@@ -35,7 +35,12 @@ const FEATURES = [
   },
 ];
 
-const LEGAL_LINKS = ["Terms", "Privacy", "DMCA", "Contact"];
+const LEGAL_LINKS = [
+  { label: "Terms", href: "/terms" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Disclaimer", href: "/disclaimer" },
+  { label: "DMCA", href: "/dmca" },
+];
 
 export default function Home() {
   return (
@@ -110,13 +115,13 @@ export default function Home() {
             </p>
             <nav aria-label="Legal">
               <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-                {LEGAL_LINKS.map((label) => (
-                  <li key={label}>
+                {LEGAL_LINKS.map((link) => (
+                  <li key={link.label}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-sm text-ink-muted transition-colors hover:text-ink"
                     >
-                      {label}
+                      {link.label}
                     </a>
                   </li>
                 ))}
