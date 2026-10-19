@@ -1,100 +1,133 @@
-import Image from "next/image";
+import DownloaderBox from "@/components/DownloaderBox";
+import Nav from "@/components/Nav";
+
+const FEATURES = [
+  {
+    title: "Free & Unlimited",
+    description:
+      "Download as many Playvids videos as you want, completely free. No hidden fees, no download caps, ever.",
+    icon: (
+      <path d="M12 2v20M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6" />
+    ),
+  },
+  {
+    title: "No Sign-Up Required",
+    description:
+      "Paste a link and go. No accounts, no email walls, no personal data collected — just fast downloads.",
+    icon: (
+      <>
+        <circle cx={12} cy={8} r={4} />
+        <path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" />
+        <path d="M18 3l3 3M21 3l-3 3" />
+      </>
+    ),
+  },
+  {
+    title: "HD Quality Support",
+    description:
+      "Save videos in crisp HD quality up to 1080p. Clean MP4 files with no watermarks, ready to watch offline.",
+    icon: (
+      <>
+        <rect x={2} y={5} width={20} height={14} rx={2} />
+        <path d="M7 15l3-3-3-3M12 15h5" />
+      </>
+    ),
+  },
+];
+
+const LEGAL_LINKS = ["Terms", "Privacy", "DMCA", "Contact"];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex min-h-screen flex-col">
+      <Nav />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <main className="flex-1">
+        <section className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
+          <div className="text-center">
+            <span className="inline-block rounded-full border border-line bg-surface px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-ink-secondary">
+              Launching soon
+            </span>
+            <h1 className="text-balance mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+              <span className="gradient-text">Playvids Video Downloader</span>{" "}
+              — Free, Fast &amp; No Sign-Up
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-balance text-base text-ink-secondary sm:text-lg">
+              The fastest way to save Playvids videos in HD MP4. Paste a link,
+              pick your quality, done — no watermarks, no registration.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <DownloaderBox />
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((feature) => (
+              <article
+                key={feature.title}
+                className="card-surface group rounded-box p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#7C3AED]/60"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-panel border border-line bg-surface-2 text-[#A855F7] transition-colors group-hover:border-[#7C3AED]/50">
+                  <svg
+                    width={22}
+                    height={22}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {feature.icon}
+                  </svg>
+                </div>
+                <h2 className="mt-5 font-display text-lg font-semibold">
+                  {feature.title}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
+                  {feature.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="border-t border-line">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <p className="text-sm text-ink-secondary">
+              © 2026 downloadxAI · playvids.videodownloaderai.com ·{" "}
+              <a
+                href="mailto:support@videodownloaderai.com"
+                className="text-ink transition-colors hover:text-white"
+              >
+                support@videodownloaderai.com
+              </a>
+            </p>
+            <nav aria-label="Legal">
+              <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                {LEGAL_LINKS.map((label) => (
+                  <li key={label}>
+                    <a
+                      href="#"
+                      className="text-sm text-ink-muted transition-colors hover:text-ink"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <p className="max-w-lg text-xs leading-relaxed text-ink-muted">
+              downloadxAI is not affiliated with Playvids. We do not host any
+              videos.
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
   );
