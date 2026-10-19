@@ -1,5 +1,6 @@
 import DownloaderBox from "@/components/DownloaderBox";
 import Nav from "@/components/Nav";
+import { getAllPosts } from "@/lib/blog";
 
 const FEATURES = [
   {
@@ -42,7 +43,10 @@ const LEGAL_LINKS = [
   { label: "DMCA", href: "/dmca" },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getAllPosts();
+  const latestPosts = posts.slice(0, 3);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Nav />
@@ -100,6 +104,42 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <section className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="font-display text-2xl font-bold tracking-tight">
+            Latest guides
+          </h2>
+          <a
+            href="/blog"
+            className="font-display text-sm font-semibold text-ink transition-colors hover:text-transparent hover:bg-clip-text hover:bg-brand-gradient"
+          >
+            View all guides →
+          </a>
+        </div>
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {latestPosts.map((post) => (
+            <a
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="card-surface group rounded-box p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#7C3AED]/60"
+            >
+              <time
+                dateTime={post.date}
+                className="font-mono text-xs uppercase tracking-widest text-ink-muted"
+              >
+                {post.date}
+              </time>
+              <h3 className="mt-2 font-display text-lg font-semibold leading-snug">
+                {post.title}
+              </h3>
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-secondary">
+                {post.description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </section>
 
       <footer className="border-t border-line">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
