@@ -173,6 +173,9 @@ export default async function Home() {
             </p>
           </div>
         </div>
+        <p className="mx-auto mt-4 max-w-6xl px-4 text-center">
+          <a href="https://www.videodownloaderai.com/supported-sites" className="inline-block text-sm underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" style={{ color: "#22D3EE" }}>Explore more platform tools at downloadxAI</a>
+        </p>
       </footer>
     </div>
   );
